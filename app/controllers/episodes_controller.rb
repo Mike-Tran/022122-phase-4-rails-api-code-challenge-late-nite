@@ -1,6 +1,4 @@
 class EpisodesController < ApplicationController
-  rescue_from ActiveRecord::RecordNotFound, with: :render_not_found_response
-
     def index
         render json: Episode.all
     end
@@ -14,10 +12,5 @@ class EpisodesController < ApplicationController
         episode = Episode.find(params[:id])
         episode.destroy
         head :no_content
-    end
-
-    private
-    def render_not_found_response
-        render json: { error: "Episode not found" }, status: :not_found
     end
 end
